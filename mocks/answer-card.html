@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <title>1/20 - This is the word</title>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=greek,latin' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <style type="text/css">
+      html, body {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         position: relative;
+         font-family: 'Open Sans', sans-serif;
+         background-color: #fcfcfc;
+      }
+      .card {
+         position: absolute;
+         margin: auto;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         max-width: 580px;
+         max-height: 348px;
+         background-color: #D9D9D9;
+         border-radius: 4px;
+         padding: 16px;
+         box-sizing: border-box;
+         border-bottom: 1px solid #ccc;
+      }
+      .headerbar, .footerbar {
+         color: #878787;
+         position: absolute;
+         height: 40px;
+      }
+      .headerbar .homebutton {
+         width: 40px;
+         height: 100%;
+         font-size: 1.3em;
+      }
+      .headerbar a {
+         color: #878787;
+         text-decoration: none;
+      }
+      .footerbar {
+         left: 0;
+         bottom: 0;
+         right: 0;
+         padding-left: 16px;
+      }
+      .contents {
+         position: relative;
+         text-align: center;
+         display: block;
+         height: 100%;
+         width: 100%;
+         padding: 40px 0;
+         box-sizing: border-box;
+         color: #242424;
+      }
+      .answer {
+         width: 100%;
+         display: table;
+         height: 100%;
+         font-size: 4em;
+         padding-bottom: 76px;
+         box-sizing: border-box;
+      }
+      .answer div {
+         display: table-cell;
+         vertical-align: middle;
+      }
+      .outcome {
+         position: absolute;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         height: 76px;
+         font-size: 3.5em;
+         text-align: center;
+         padding-bottom: 40px;
+         text-align:
+      }
+      .outcome-button {
+         padding: 0 40px;
+         margin: 0 14px;
+      }
+      .wrong {
+         color: #BB0008;
+      }
+      .correct {
+         color: #408000;
+      }
+   </style>
+</head>
+<body>
+   <div class="card">
+      <div class="headerbar">
+         <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
+      </div>
+      <div class="contents">
+         <div class="answer">
+            <div>Answer word</div>
+         </div>
+         <div class="outcome">
+            <a href="#" class="outcome-button wrong"><i class="fa fa-times-circle-o"></i></a>
+            <a href="#" class="outcome-button correct"><i class="fa fa-check-circle-o"></i></a>
+         </div>
+         </a>
+      </div>
+      <div class="footerbar">
+         <div class="progress">
+            <span class="current">1</span>&nbsp;of&nbsp;<span class="total">20</span>
+         </div>
+      </div>
+   </div>
+</body>
+</html>
