@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <title>Card deck completed</title>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=greek,latin' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <style type="text/css">
+      html, body {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         position: relative;
+         font-family: 'Open Sans', sans-serif;
+         background-color: #fcfcfc;
+      }
+      .card {
+         position: absolute;
+         margin: auto;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         max-width: 580px;
+         max-height: 348px;
+         background-color: #D9D9D9;
+         border-radius: 4px;
+         padding: 16px;
+         box-sizing: border-box;
+         border-bottom: 1px solid #ccc;
+      }
+      .headerbar, .footerbar {
+         color: #878787;
+         position: absolute;
+         height: 40px;
+      }
+      .headerbar .homebutton {
+         width: 40px;
+         height: 100%;
+         font-size: 1.3em;
+      }
+      .headerbar a {
+         color: #878787;
+         text-decoration: none;
+      }
+      .contents {
+         position: relative;
+         text-align: center;
+         display: block;
+         height: 100%;
+         width: 100%;
+         padding: 40px 0;
+         box-sizing: border-box;
+         color: #242424;
+      }
+      h1 {
+         margin: 0;
+         padding: 0;
+      }
+      p {
+         margin: 0;
+         padding: 0;
+      }
+      ul {
+         display: inline-block;
+         min-width: 50%;
+         text-align: left;
+         height: 40%;
+         overflow-y: scroll;
+         margin: 0;
+         padding: 0;
+         border: 2px solid #aaa;
+         border-radius: 4px;
+      }
+      li {
+         list-style-type: none;
+         margin: 0;
+         padding: 0.5em 1.5em;
+         border-bottom: 1px solid #aaa;
+      }
+      li:last-of-type{
+         border-bottom: 0;
+      }
+   </style>
+</head>
+<body>
+   <div class="card">
+      <div class="headerbar">
+         <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
+      </div>
+      <div class="contents">
+         <h1>Success!</h1>
+         <p>18 cards correct</p>
+         <h2>Cards needing work:</h2>
+         <ul class="workon">
+            <li>Word 1</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+         </ul>
+         </a>
+      </div>
+   </div>
+</body>
+</html>
