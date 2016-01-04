@@ -8,11 +8,13 @@ module.exports = function(grunt) {
       project: {
          src: {
             root: './src',
-            js: '<%= project.src.root %>/js'
+            js: '<%= project.src.root %>/js',
+            data: './data'
          },
          dist: {
             root: 'dist',
-            js: '<%= project.dist.root %>/js'
+            js: '<%= project.dist.root %>/js',
+            data: '<%= project.dist.root %>/data'
          }
       },
       browserify: {
@@ -46,6 +48,17 @@ module.exports = function(grunt) {
                   filter: 'isFile'
                },
             ]
+         },
+         data: {
+            files: [
+               {
+                  expand: true,
+                  cwd: '<%= project.src.data %>',
+                  src: '**/*.json',
+                  dest: '<%= project.dist.data %>',
+                  filter: 'isFile'
+               },
+            ]
          }
       },
       watch: {
@@ -57,5 +70,5 @@ module.exports = function(grunt) {
       }
    });
 
-   grunt.registerTask('default', ['browserify', 'exorcise', 'copy:app']);
+   grunt.registerTask('default', ['browserify', 'exorcise', 'copy:app', 'copy:data']);
 };
