@@ -1,0 +1,52 @@
+{
+   "name": "Numbers",
+   "author": "Ethan Smith",
+   "version": "0.0.0",
+   "percentDone": 0.2,
+   "cards": [
+      {
+         "a": "0",
+         "b": "cero"
+      },
+      {
+         "a": "1",
+         "b": "uno"
+      },
+      {
+         "a": "2",
+         "b": "dos"
+      },
+      {
+         "a": "3",
+         "b": "tres"
+      },
+      {
+         "a": "4",
+         "b": "cuatro"
+      },
+      {
+         "a": "5",
+         "b": "cinco"
+      },
+      {
+         "a": "6",
+         "b": "seis"
+      },
+      {
+         "a": "7",
+         "b": "siete"
+      },
+      {
+         "a": "8",
+         "b": "ocho"
+      },
+      {
+         "a": "9",
+         "b": "nueve"
+      },
+      {
+         "a": "10",
+         "b": "diez"
+      }
+   ]
+}
