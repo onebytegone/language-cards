@@ -3,6 +3,7 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-exorcise');
    grunt.loadNpmTasks('grunt-contrib-copy');
+   grunt.loadNpmTasks('grunt-execute');
 
    grunt.initConfig({
       project: {
@@ -61,6 +62,11 @@ module.exports = function(grunt) {
             ]
          }
       },
+      execute: {
+         buildIndex: {
+            src: ['util/generate-index.js']
+         }
+      },
       watch: {
          files: [
             '<%= project.src.root %>/**/*.js',
@@ -70,5 +76,5 @@ module.exports = function(grunt) {
       }
    });
 
-   grunt.registerTask('default', ['browserify', 'exorcise', 'copy:app', 'copy:data']);
+   grunt.registerTask('default', ['browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
 };
