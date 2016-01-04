@@ -17,7 +17,8 @@ generateEntry = function(filepath) {
    contents = require('../' + filepath);
    entry = {
       file: sanitizePath(filepath),
-      name: contents.name
+      name: contents.name,
+      cardCount: contents.cards.length
    };
 
    if (contents.percentDone) {
