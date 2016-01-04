@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <title>Card deck completed</title>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=greek,latin' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <style type="text/css">
+      html, body {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         position: relative;
+         font-family: 'Open Sans', sans-serif;
+         background-color: #fcfcfc;
+      }
+      .card {
+         position: absolute;
+         margin: auto;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         max-width: 580px;
+         max-height: 348px;
+         background-color: #D9D9D9;
+         border-radius: 4px;
+         padding: 16px;
+         box-sizing: border-box;
+         border-bottom: 1px solid #ccc;
+      }
+      .headerbar, .footerbar {
+         color: #878787;
+         position: absolute;
+         height: 40px;
+      }
+      .headerbar .homebutton {
+         width: 40px;
+         height: 100%;
+         font-size: 1.3em;
+      }
+      .headerbar a {
+         color: #878787;
+         text-decoration: none;
+      }
+      .contents {
+         position: relative;
+         text-align: center;
+         display: block;
+         height: 100%;
+         width: 100%;
+         padding: 40px 0;
+         box-sizing: border-box;
+         color: #242424;
+      }
+      h1 {
+         margin: 0;
+         padding: 0;
+      }
+      p {
+         margin: 0;
+         padding: 0;
+      }
+      ul {
+         min-width: 50%;
+         text-align: left;
+         overflow-y: scroll;
+         margin: 0;
+         padding: 0;
+         border: 2px solid #aaa;
+         border-radius: 4px;
+         height: 95%;
+      }
+      li {
+         list-style-type: none;
+         margin: 0;
+         padding: 0;
+         border-bottom: 1px solid #aaa;
+      }
+      li:last-of-type{
+         border-bottom: 0;
+      }
+      .name {
+         font-weight: bold;
+      }
+      .percentCompleted {
+         display: inline-block;;
+         margin-left: 1em;
+         color: #999;
+      }
+      .cardCount {
+         color: #676767;
+         float: right;
+      }
+      li a {
+         color: inherit;
+         text-decoration: none;
+         box-sizing: border-box;
+         padding: 0.5em 1.5em;
+         display: block;
+         width: 100%;
+         height: 100%;
+      }
+   </style>
+</head>
+<body>
+   <div class="card">
+      <div class="contents">
+         <h1>Select deck:</h1>
+         <ul class="cards">
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 2</span><span class="percentCompleted" style="display:none;">100%</span><span class="cardCount">1992 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Really long title of a deck</span><span class="percentCompleted">50%</span><span class="cardCount">10 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+            <li>
+               <a href="#">
+                  <span class="name">Words 1</span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+               </a>
+            </li>
+         </ul>
+         </a>
+      </div>
+   </div>
+</body>
+</html>
