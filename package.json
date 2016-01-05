@@ -16,7 +16,12 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-execute": "^0.2.2",
     "grunt-exorcise": "^2.1.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^0.5.1"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.marionette": "^2.4.4",
+    "jquery": "^2.1.4",
     "underscore": "^1.8.3"
   }
 }
