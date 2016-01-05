@@ -43,8 +43,6 @@ glob("data/**/*.json", function (err, files) {
    var index = _.map(files, generateEntry),
        targetFile = 'dist/data/directory.json';
 
-   console.log(index);
-
    mkdirp(path.dirname(targetFile), function (err) {
       if (err) {
          console.log(err);
