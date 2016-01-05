@@ -4,18 +4,44 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-exorcise');
    grunt.loadNpmTasks('grunt-contrib-copy');
    grunt.loadNpmTasks('grunt-execute');
+   grunt.loadNpmTasks('grunt-sass');
 
    grunt.initConfig({
       project: {
          src: {
             root: './src',
             js: '<%= project.src.root %>/js',
+            sass: '<%= project.src.root %>/sass',
             data: './data'
          },
          dist: {
             root: 'dist',
+            css: '<%= project.dist.root %>/css',
             js: '<%= project.dist.root %>/js',
             data: '<%= project.dist.root %>/data'
+         }
+      },
+      sass: {
+         dist: {
+            options: {
+               sourceMap: true,
+               outputStyle: 'compressed',
+               loadPath: [
+                  '<%= project.src.root %>'
+               ],
+               trace: true,
+               unixNewlines: true
+            },
+            files: [
+               {
+                  expand: true,
+                  flatten: true,
+                  cwd: '.',
+                  src: ['<%= project.src.sass %>/main.scss'],
+                  dest: '<%= project.dist.css %>',
+                  ext: '.css'
+               }
+            ]
          }
       },
       browserify: {
@@ -70,11 +96,12 @@ module.exports = function(grunt) {
       watch: {
          files: [
             '<%= project.src.root %>/**/*.js',
+            '<%= project.src.root %>/**/*.scss',
             '<%= project.src.root %>/**/*.html',
          ],
          tasks: ['default']
       }
    });
 
-   grunt.registerTask('default', ['browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
+   grunt.registerTask('default', ['sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
 };
