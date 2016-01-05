@@ -3,6 +3,7 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-exorcise');
    grunt.loadNpmTasks('grunt-contrib-copy');
+   grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-execute');
    grunt.loadNpmTasks('grunt-sass');
 
@@ -100,8 +101,11 @@ module.exports = function(grunt) {
             '<%= project.src.root %>/**/*.html',
          ],
          tasks: ['default']
+      },
+      jshint: {
+         files: ['Gruntfile.js', '<%= project.src.root %>/app.js', '<%= project.src.js %>/**/*.js']
       }
    });
 
-   grunt.registerTask('default', ['sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
+   grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
 };
