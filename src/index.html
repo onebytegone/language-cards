@@ -5,7 +5,18 @@
    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-   Hello World
+   <div id="wrapper"></div>
+   <script type="text/template" id="template-welcomeview">
+      <div class="contents">
+         <h1>Select deck:</h1>
+         <div class="decks"></div>
+      </div>
+   </script>
+   <script type="text/template" id="template-decklistitem">
+      <a href="#">
+         <span class="name"><%= name %></span><span class="percentCompleted">50%</span><span class="cardCount">3 cards</span>
+      </a>
+   </script>
    <script type="text/javascript" src="js/bundle.js"></script>
 </body>
 </html>
