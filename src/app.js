@@ -1,5 +1,5 @@
 var $ = require('jquery'),
-    LanguageCards = require('./LanguageCards');
+    LanguageCards = require('./js/LanguageCards');
 
 $(function () {
    'use strict';
