@@ -25,10 +25,14 @@ var LanguageCards = Marionette.Application.extend({
          welcomeScreen.getRegion('decks').show(new DeckList({
             collection: new DeckCollection([
                new Deck({
-                  name: 'Test deck'
+                  name: 'Test deck',
+                  percentCompleted: 0.3,
+                  cardCount: 99
                }),
                new Deck({
-                  name: 'Another deck'
+                  name: 'Another deck',
+                  percentCompleted: 1.0,
+                  cardCount: 5
                })
             ])
          }));
