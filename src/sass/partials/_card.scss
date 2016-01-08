@@ -31,6 +31,9 @@
    a {
       color: $color-navbar-link;
       text-decoration: none;
+      &:hover {
+         color: $color-navbar-link--hover;
+      }
    }
 }
 
