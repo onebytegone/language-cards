@@ -9,15 +9,15 @@
    height: 100%;
    max-width: 580px;
    max-height: 348px;
-   background-color: #D9D9D9;
+   background-color: $color-card-background;
    border-radius: 4px;
    padding: 16px;
    box-sizing: border-box;
-   border-bottom: 1px solid #ccc;
+   border-bottom: 1px solid $color-card-lowerborder;
 }
 
 .headerbar, .footerbar {
-   color: #878787;
+   color: $color-navbar-link;
    position: absolute;
    height: 40px;
 }
@@ -29,7 +29,7 @@
       font-size: 1.3em;
    }
    a {
-      color: #878787;
+      color: $color-navbar-link;
       text-decoration: none;
    }
 }
@@ -42,5 +42,4 @@
    width: 100%;
    padding: 40px 0;
    box-sizing: border-box;
-   color: #242424;
 }
