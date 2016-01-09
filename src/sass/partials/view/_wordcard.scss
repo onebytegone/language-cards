@@ -1,0 +1,14 @@
+.wordcard {
+   .flip {
+      display: table;
+      height: 100%;
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+   }
+   .word {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 4em;
+   }
+}
