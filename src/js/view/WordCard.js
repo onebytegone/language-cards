@@ -5,7 +5,7 @@ module.exports = Marionette.ItemView.extend({
    tagName: 'div',
    className: 'card wordcard',
    events : {
-      'click a.flip' : function(event) {
+      'click a' : function(event) {
          this.trigger('flip:card', this.model);
       }
    }

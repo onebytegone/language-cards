@@ -67,6 +67,10 @@ var LanguageCards = Marionette.Application.extend({
       var self = this,
           answerCard = new AnswerCard();
 
+      answerCard.on('next:card', function() {
+         self._showWordCard();
+      });
+
       this.mainRegion.show(answerCard);
    }
 });
