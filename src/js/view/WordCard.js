@@ -7,6 +7,9 @@ module.exports = Marionette.ItemView.extend({
    events : {
       'click a' : function(event) {
          this.trigger('flip:card', this.model);
+      },
+      'click a.homebutton' : function(event) {
+         this.trigger('home:pressed');
       }
    }
 });

@@ -19,10 +19,14 @@ var LanguageCards = Marionette.Application.extend({
    },
 
    _initialize: function() {
+      console.log('Initializing...');
+      this._showWelcomeScreen();
+   },
+
+   //TODO: this is not the place for this, please move
+   _showWelcomeScreen: function() {
       var self = this,
           welcomeScreen = new WelcomeView();
-
-      console.log('Initializing...');
 
       welcomeScreen.on('show', function() {
          var deckList = new DeckList({
@@ -59,6 +63,10 @@ var LanguageCards = Marionette.Application.extend({
          self._showAnswerCard();
       });
 
+      wordCard.on('home:pressed', function() {
+         self._showWelcomeScreen();
+      });
+
       this.mainRegion.show(wordCard);
    },
 
@@ -69,6 +77,10 @@ var LanguageCards = Marionette.Application.extend({
 
       answerCard.on('next:card', function() {
          self._showWordCard();
+      });
+
+      answerCard.on('home:pressed', function() {
+         self._showWelcomeScreen();
       });
 
       this.mainRegion.show(answerCard);
