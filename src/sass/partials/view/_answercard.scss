@@ -1,0 +1,34 @@
+.answercard {
+   .answer {
+      display: table;
+      width: 100%;
+      height: 100%;
+      font-size: 4em;
+      padding-bottom: 76px;
+      box-sizing: border-box;
+   }
+   .answer div {
+      display: table-cell;
+      vertical-align: middle;
+   }
+   .outcome {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 76px;
+      font-size: 3.5em;
+      text-align: center;
+      padding-bottom: 40px;
+   }
+   .outcome-button {
+      padding: 0 40px;
+      margin: 0 14px;
+   }
+   .wrong {
+      color: $color-wrong-text;
+   }
+   .correct {
+      color: $color-correct-text;
+   }
+}
