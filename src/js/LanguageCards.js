@@ -2,6 +2,7 @@ var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     WelcomeView = require('./view/WelcomeView'),
     WordCard = require('./view/WordCard'),
+    AnswerCard = require('./view/AnswerCard'),
     DeckList = require('./view/DeckList'),
     Deck = require('./model/Deck'),
     DeckCollection = require('./model/DeckCollection');
@@ -54,8 +55,20 @@ var LanguageCards = Marionette.Application.extend({
       var self = this,
           wordCard = new WordCard();
 
+      wordCard.on('flip:card', function() {
+         self._showAnswerCard();
+      });
+
       this.mainRegion.show(wordCard);
    },
+
+   //TODO: this is not the place for this, please move
+   _showAnswerCard: function() {
+      var self = this,
+          answerCard = new AnswerCard();
+
+      this.mainRegion.show(answerCard);
+   }
 });
 
 module.exports = LanguageCards;
