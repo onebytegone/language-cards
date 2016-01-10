@@ -20,6 +20,7 @@
    color: $color-navbar-link;
    position: absolute;
    height: 40px;
+   z-index: 100;  // Keep bars on top of `.contents` so links are clickable
 }
 
 .headerbar {
