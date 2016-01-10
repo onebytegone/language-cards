@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     WelcomeView = require('./view/WelcomeView'),
+    WordCard = require('./view/WordCard'),
     DeckList = require('./view/DeckList'),
     Deck = require('./model/Deck'),
     DeckCollection = require('./model/DeckCollection');
@@ -17,12 +18,13 @@ var LanguageCards = Marionette.Application.extend({
    },
 
    _initialize: function() {
-      var welcomeScreen = new WelcomeView();
+      var self = this,
+          welcomeScreen = new WelcomeView();
 
       console.log('Initializing...');
 
       welcomeScreen.on('show', function() {
-         welcomeScreen.getRegion('decks').show(new DeckList({
+         var deckList = new DeckList({
             collection: new DeckCollection([
                new Deck({
                   name: 'Test deck',
@@ -35,11 +37,25 @@ var LanguageCards = Marionette.Application.extend({
                   cardCount: 5
                })
             ])
-         }));
+         });
+
+         deckList.on('selected:deck', function(model) {
+            self._showWordCard();
+         });
+
+         welcomeScreen.getRegion('decks').show(deckList);
       });
 
       this.mainRegion.show(welcomeScreen);
-   }
+   },
+
+   //TODO: this is not the place for this, please move
+   _showWordCard: function() {
+      var self = this,
+          wordCard = new WordCard();
+
+      this.mainRegion.show(wordCard);
+   },
 });
 
 module.exports = LanguageCards;
