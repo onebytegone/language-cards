@@ -4,7 +4,7 @@ var Backbone = require('backbone'),
     WordCard = require('./view/WordCard'),
     AnswerCard = require('./view/AnswerCard'),
     DeckList = require('./view/DeckList'),
-    Deck = require('./model/Deck'),
+    DeckBlurb = require('./model/DeckBlurb'),
     DeckCollection = require('./model/DeckCollection');
 
 var LanguageCards = Marionette.Application.extend({
@@ -31,12 +31,12 @@ var LanguageCards = Marionette.Application.extend({
       welcomeScreen.on('show', function() {
          var deckList = new DeckList({
             collection: new DeckCollection([
-               new Deck({
+               new DeckBlurb({
                   name: 'Test deck',
                   percentCompleted: 0.3,
                   cardCount: 99
                }),
-               new Deck({
+               new DeckBlurb({
                   name: 'Another deck',
                   percentCompleted: 1.0,
                   cardCount: 5

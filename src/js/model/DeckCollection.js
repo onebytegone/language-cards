@@ -1,6 +1,6 @@
 var Backbone = require('backbone'),
-    Deck = require('./Deck');
+    DeckBlurb = require('./DeckBlurb');
 
 module.exports = Backbone.Collection.extend({
-   model: Deck
+   model: DeckBlurb
 });
