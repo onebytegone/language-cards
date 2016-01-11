@@ -16,12 +16,17 @@ var LanguageCards = Marionette.Application.extend({
    _initialize: function() {
       console.log('Initializing...');
 
-      this._present(new WelcomeController());
+      this._showWelcomeScreen();
    },
 
    _present: function(controller) {
       controller.on('present:controller', this._present.bind(this));
+      controller.on('go:welcomescreen', this._showWelcomeScreen.bind(this));
       this.mainRegion.show(controller.fetchView());
+   },
+
+   _showWelcomeScreen: function() {
+      this._present(new WelcomeController());
    }
 });
 

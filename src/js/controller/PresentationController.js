@@ -14,6 +14,10 @@ module.exports = BaseController.extend({
          self._showWord();
       });
 
+      view.on('home:pressed', function() {
+         self.trigger('go:welcomescreen');
+      });
+
       return view;
    },
 
