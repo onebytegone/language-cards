@@ -1,6 +1,6 @@
 var Marionette = require('backbone.marionette');
 
-module.exports = Marionette.ItemView.extend({
+module.exports = Marionette.LayoutView.extend({
    template: '#template-deckcard',
    tagName: 'div',
    className: 'card deckcard',
@@ -8,5 +8,8 @@ module.exports = Marionette.ItemView.extend({
       'click a.homebutton' : function(event) {
          this.trigger('home:pressed');
       }
+   },
+   regions: {
+      contents: '.contents'
    }
 });
