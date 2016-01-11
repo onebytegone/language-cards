@@ -1,11 +1,8 @@
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
-    WelcomeView = require('./view/WelcomeView'),
     WordCard = require('./view/WordCard'),
     AnswerCard = require('./view/AnswerCard'),
-    DeckList = require('./view/DeckList'),
-    DeckBlurb = require('./model/DeckBlurb'),
-    DeckCollection = require('./model/DeckCollection');
+    WelcomeController = require('./controller/WelcomeController');
 
 var LanguageCards = Marionette.Application.extend({
    run: function() {
@@ -20,38 +17,13 @@ var LanguageCards = Marionette.Application.extend({
 
    _initialize: function() {
       console.log('Initializing...');
-      this._showWelcomeScreen();
+
+      this._present(new WelcomeController());
    },
 
-   //TODO: this is not the place for this, please move
-   _showWelcomeScreen: function() {
-      var self = this,
-          welcomeScreen = new WelcomeView();
-
-      welcomeScreen.on('show', function() {
-         var deckList = new DeckList({
-            collection: new DeckCollection([
-               new DeckBlurb({
-                  name: 'Test deck',
-                  percentCompleted: 0.3,
-                  cardCount: 99
-               }),
-               new DeckBlurb({
-                  name: 'Another deck',
-                  percentCompleted: 1.0,
-                  cardCount: 5
-               })
-            ])
-         });
-
-         deckList.on('selected:deck', function(model) {
-            self._showWordCard();
-         });
-
-         welcomeScreen.getRegion('decks').show(deckList);
-      });
-
-      this.mainRegion.show(welcomeScreen);
+   _present: function(controller) {
+      controller.on('present:controller', this._present.bind(this));
+      this.mainRegion.show(controller.fetchView());
    },
 
    //TODO: this is not the place for this, please move
