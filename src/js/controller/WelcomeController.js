@@ -1,4 +1,5 @@
 var BaseController = require('./BaseController'),
+    PresentationController = require('./PresentationController'),
     WelcomeView = require('../view/WelcomeView'),
     DeckList = require('../view/DeckList'),
     DeckBlurb = require('../model/DeckBlurb'),
@@ -39,8 +40,9 @@ module.exports = BaseController.extend({
    },
 
    _presentDeck: function(blurb) {
-      //TODO: load correct controller
-      var controller = new BaseController();
+      var controller = new PresentationController();
+
+      // TODO: give deck to controller
 
       this.trigger('present:controller', controller);
    }
