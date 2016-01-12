@@ -2,14 +2,16 @@ var BaseController = require('./BaseController'),
     DeckCard = require('../view/DeckCard'),
     WordSide = require('../view/WordSide'),
     AnswerSide = require('../view/AnswerSide'),
-    Deck = require('../model/Deck');
+    Deck = require('../model/Deck'),
+    DeckCursor = require('../model/DeckCursor');
 
 module.exports = BaseController.extend({
-   deck: null,
-   currentIndex: 0,
+   cursor: null,
 
    initialize: function(blurb) {
-      this.deck = Deck.createFromBlurb(blurb);
+      this.cursor = new DeckCursor({
+         deck: Deck.createFromBlurb(blurb)
+      });
 
       BaseController.prototype.initialize.call(this);
    },
@@ -32,7 +34,7 @@ module.exports = BaseController.extend({
    _showWord: function() {
       var self = this,
           side = new WordSide({
-             model: this.deck.get('cards').at(this.currentIndex)
+             model: this.cursor.currentCard()
           });
 
       side.on('flip:card', function() {
@@ -45,16 +47,16 @@ module.exports = BaseController.extend({
    _showAnswer: function() {
       var self = this,
           side = new AnswerSide({
-             model: this.deck.get('cards').at(this.currentIndex)
+             model: this.cursor.currentCard()
           });
 
       side.on('next:card', function() {
-         self.currentIndex++;
-         if (self.currentIndex >= self.deck.get('cards').length) {
+         if (self.cursor.hasAnotherCard()) {
+            self.cursor.jumpToNextCard();
+            self._showWord();
+         } else {
             // TODO: go to results screen
             self.trigger('go:welcomescreen');
-         } else {
-            self._showWord();
          }
       });
 
