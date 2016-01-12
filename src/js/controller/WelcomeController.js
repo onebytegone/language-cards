@@ -40,10 +40,6 @@ module.exports = BaseController.extend({
    },
 
    _presentDeck: function(blurb) {
-      var controller = new PresentationController();
-
-      // TODO: give deck to controller
-
-      this.trigger('present:controller', controller);
+      this.trigger('present:controller', new PresentationController(blurb));
    }
 });
