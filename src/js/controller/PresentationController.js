@@ -18,7 +18,9 @@ module.exports = BaseController.extend({
 
    generateView: function() {
       var self = this,
-          view = new DeckCard();
+          view = new DeckCard({
+             model: this.cursor
+          });
 
       view.on('show', function() {
          self._showWord();

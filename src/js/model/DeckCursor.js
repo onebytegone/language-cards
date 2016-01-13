@@ -1,4 +1,5 @@
 var Backbone = require('backbone'),
+    _ = require('underscore'),
     Deck = require('./Deck');
 
 module.exports = Backbone.Model.extend({
@@ -22,5 +23,13 @@ module.exports = Backbone.Model.extend({
       } else {
          this.set('index', 0);
       }
+   },
+
+   toJSON: function() {
+      var original = Backbone.Model.prototype.toJSON.call(this);
+      return _.extend(original, {
+         readableIndex: this.get('index') + 1,
+         cardCount: this.get('deck').get('cards').length
+      });
    }
 });

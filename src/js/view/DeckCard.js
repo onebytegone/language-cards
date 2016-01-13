@@ -11,5 +11,8 @@ module.exports = Marionette.LayoutView.extend({
    },
    regions: {
       contents: '.contents'
+   },
+   initialize: function() {
+      this.listenTo(this.model, 'change', this.render);
    }
 });
