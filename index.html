@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title></title>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=greek,latin' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+   <div id="wrapper"></div>
+   <script type="text/template" id="template-welcomeview">
+      <div class="contents">
+         <h1>Select deck:</h1>
+         <div class="decks"></div>
+      </div>
+   </script>
+   <script type="text/template" id="template-decklistitem">
+      <a href="#">
+         <span class="name"><%= name %></span><span class="percentCompleted"><%= percentCompleted %></span><span class="cardCount"><%= cardCount %> cards</span>
+      </a>
+   </script>
+   <script type="text/template" id="template-deckcard">
+      <div class="headerbar">
+         <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
+      </div>
+      <div class="contents"></div>
+      <div class="footerbar">
+         <div class="progress">
+            <span class="current"><%- readableIndex %></span>&nbsp;of&nbsp;<span class="total"><%- cardCount %></span>
+         </div>
+      </div>
+   </script>
+   <script type="text/template" id="template-wordside">
+      <a href="#" class="flip">
+         <span class="word"><%- a %></span>
+      </a>
+   </script>
+   <script type="text/template" id="template-answerside">
+      <div class="answer">
+         <div><%- b %></div>
+      </div>
+      <div class="outcome">
+         <a href="#" class="outcome-button wrong"><i class="fa fa-times-circle-o"></i></a>
+         <a href="#" class="outcome-button correct"><i class="fa fa-check-circle-o"></i></a>
+      </div>
+   </script>
+   <script type="text/template" id="template-resultsview">
+      <div class="headerbar">
+         <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
+      </div>
+      <div class="contents">
+         <h1>Finished!</h1>
+         <p><%= numberCorrect %> cards correct</p>
+         <h2>Cards needing work:</h2>
+         <ul class="wordlist">
+            <li>Word 1</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+            <li>Word 2</li>
+            <li>Word 3</li>
+         </ul>
+      </div>
+   </script>
+   <script type="text/javascript" src="js/bundle.js"></script>
+</body>
+</html>
