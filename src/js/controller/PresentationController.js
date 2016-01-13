@@ -57,8 +57,8 @@ module.exports = BaseController.extend({
             self.cursor.jumpToNextCard();
             self._showWord();
          } else {
-            // TODO: go to results screen
-            self.trigger('go:welcomescreen');
+            // TODO: pass stats to results screen
+            self.trigger('go:resultsscreen');
          }
       });
 

@@ -1,0 +1,30 @@
+.results {
+   h1 {
+      margin: 0;
+      padding: 0;
+   }
+   p {
+      margin: 0;
+      padding: 0;
+   }
+}
+
+.wordlist {
+   min-width: 50%;
+   height: 45%;
+   text-align: left;
+   overflow-y: scroll;
+   margin: 0;
+   padding: 0;
+   border: 2px solid $color-border;
+   border-radius: 4px;
+   li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0.5em 1.5em;
+      border-bottom: 1px solid $color-border;
+      &:last-of-type{
+         border-bottom: 0;
+      }
+   }
+}

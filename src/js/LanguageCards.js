@@ -1,6 +1,7 @@
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
-    WelcomeController = require('./controller/WelcomeController');
+    WelcomeController = require('./controller/WelcomeController'),
+    ResultsController = require('./controller/ResultsController');
 
 var LanguageCards = Marionette.Application.extend({
    run: function() {
@@ -22,11 +23,16 @@ var LanguageCards = Marionette.Application.extend({
    _present: function(controller) {
       controller.on('present:controller', this._present.bind(this));
       controller.on('go:welcomescreen', this._showWelcomeScreen.bind(this));
+      controller.on('go:resultsscreen', this._showResultsScreen.bind(this));
       this.mainRegion.show(controller.fetchView());
    },
 
    _showWelcomeScreen: function() {
       this._present(new WelcomeController());
+   },
+
+   _showResultsScreen: function() {
+      this._present(new ResultsController());
    }
 });
 
