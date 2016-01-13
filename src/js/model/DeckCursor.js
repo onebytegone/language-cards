@@ -5,8 +5,7 @@ var Backbone = require('backbone'),
 module.exports = Backbone.Model.extend({
    defaults: {
       deck: new Deck(),
-      index: 0,
-      history: []
+      index: 0
    },
 
    hasAnotherCard: function() {

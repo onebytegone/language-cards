@@ -7,6 +7,12 @@ module.exports = Marionette.ItemView.extend({
    events: {
       'click a.outcome-button': function(event) {
          this.trigger('next:card', this.model);
+      },
+      'click a.correct': function(event) {
+         this.trigger('card:correct', this.model);
+      },
+      'click a.wrong': function(event) {
+         this.trigger('card:wrong', this.model);
       }
    }
 });

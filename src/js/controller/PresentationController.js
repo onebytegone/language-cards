@@ -3,10 +3,13 @@ var BaseController = require('./BaseController'),
     WordSide = require('../view/WordSide'),
     AnswerSide = require('../view/AnswerSide'),
     Deck = require('../model/Deck'),
-    DeckCursor = require('../model/DeckCursor');
+    DeckCursor = require('../model/DeckCursor'),
+    HistoryCollection = require('../model/HistoryCollection'),
+    CardHistory = require('../model/CardHistory');
 
 module.exports = BaseController.extend({
    cursor: null,
+   history: new HistoryCollection(),
 
    initialize: function(blurb) {
       this.cursor = new DeckCursor({
@@ -51,6 +54,20 @@ module.exports = BaseController.extend({
           side = new AnswerSide({
              model: this.cursor.currentCard()
           });
+
+      side.on('card:correct', function(card) {
+         self.history.push(new CardHistory({
+            card: card,
+            wasCorrect: true
+         }));
+      });
+
+      side.on('card:wrong', function(card) {
+         self.history.push(new CardHistory({
+            card: card,
+            wasCorrect: false
+         }));
+      });
 
       side.on('next:card', function() {
          if (self.cursor.hasAnotherCard()) {
