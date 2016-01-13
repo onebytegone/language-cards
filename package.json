@@ -17,6 +17,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-execute": "^0.2.2",
     "grunt-exorcise": "^2.1.0",
+    "grunt-gh-pages": "^1.0.0",
     "grunt-sass": "^1.1.0",
     "mkdirp": "^0.5.1"
   },

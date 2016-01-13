@@ -6,6 +6,7 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-execute');
    grunt.loadNpmTasks('grunt-sass');
+   grunt.loadNpmTasks('grunt-gh-pages');
 
    grunt.initConfig({
       project: {
@@ -104,8 +105,16 @@ module.exports = function(grunt) {
       },
       jshint: {
          files: ['Gruntfile.js', '<%= project.src.root %>/app.js', '<%= project.src.js %>/**/*.js']
+      },
+      'gh-pages': {
+         options: {
+            base: 'dist',
+            push: false  // Commit only, don't automatically push changes
+         },
+         src: ['**']
       }
    });
 
    grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
+   grunt.registerTask('deploy', ['default', 'gh-pages']);
 };
