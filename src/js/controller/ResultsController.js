@@ -7,6 +7,10 @@ module.exports = BaseController.extend({
       var self = this,
           view = new ResultsView();
 
+      view.on('home:pressed', function() {
+         self.trigger('go:welcomescreen');
+      });
+
       return view;
    }
 
