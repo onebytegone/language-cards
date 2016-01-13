@@ -31,8 +31,8 @@ var LanguageCards = Marionette.Application.extend({
       this._present(new WelcomeController());
    },
 
-   _showResultsScreen: function() {
-      this._present(new ResultsController());
+   _showResultsScreen: function(history) {
+      this._present(new ResultsController(history));
    }
 });
 
