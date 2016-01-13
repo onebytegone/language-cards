@@ -17092,17 +17092,25 @@ module.exports = Backbone.Model.extend({
 });
 
 },{"./CardCollection":14,"./DeckBlurb":17,"backbone":4}],17:[function(require,module,exports){
-var Backbone = require('backbone');
+var Backbone = require('backbone'),
+    _ = require('underscore');
 
 module.exports = Backbone.Model.extend({
    defaults: {
       name: 'Unknown Deck',
       cardCount: 0,
       percentCompleted: 0
+   },
+
+   toJSON: function() {
+      var original = Backbone.Model.prototype.toJSON.call(this);
+      return _.extend(original, {
+         percentCompletedFormated: Math.round(original.percentCompleted * 100)
+      });
    }
 });
 
-},{"backbone":4}],18:[function(require,module,exports){
+},{"backbone":4,"underscore":6}],18:[function(require,module,exports){
 var Backbone = require('backbone'),
     DeckBlurb = require('./DeckBlurb');
 
@@ -17167,14 +17175,13 @@ module.exports = Marionette.ItemView.extend({
    tagName: 'div',
    className: 'answerside',
    events: {
-      'click a.outcome-button': function(event) {
-         this.trigger('next:card', this.model);
-      },
       'click a.correct': function(event) {
          this.trigger('card:correct', this.model);
+         this.trigger('next:card', this.model);
       },
       'click a.wrong': function(event) {
          this.trigger('card:wrong', this.model);
+         this.trigger('next:card', this.model);
       }
    }
 });
