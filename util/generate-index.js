@@ -21,8 +21,8 @@ generateEntry = function(filepath) {
       cardCount: contents.cards.length
    };
 
-   if (contents.percentDone) {
-      entry.percentDone = contents.percentDone;
+   if (contents.underDevelopment) {
+      entry.underDevelopment = contents.underDevelopment;
    };
 
    return entry;

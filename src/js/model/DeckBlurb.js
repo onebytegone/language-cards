@@ -5,14 +5,7 @@ module.exports = Backbone.Model.extend({
    defaults: {
       name: 'Unknown Deck',
       cardCount: 0,
-      percentCompleted: 0,
+      underDevelopment: false,
       file: ''
-   },
-
-   toJSON: function() {
-      var original = Backbone.Model.prototype.toJSON.call(this);
-      return _.extend(original, {
-         percentCompletedFormated: Math.round(original.percentCompleted * 100)
-      });
    }
 });
