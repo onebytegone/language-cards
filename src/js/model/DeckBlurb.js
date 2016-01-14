@@ -5,7 +5,8 @@ module.exports = Backbone.Model.extend({
    defaults: {
       name: 'Unknown Deck',
       cardCount: 0,
-      percentCompleted: 0
+      percentCompleted: 0,
+      file: ''
    },
 
    toJSON: function() {

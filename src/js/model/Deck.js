@@ -7,24 +7,4 @@ module.exports = Backbone.Model.extend({
       blurb: new DeckBlurb(),
       cards: new CardCollection()
    }
-}, {
-   createFromBlurb: function(blurb) {
-      var deck = new this({
-         blurb: blurb,
-         cards: new CardCollection([
-            {
-               a: "word",
-               b: "answer"
-            },
-            {
-               a: "palabra",
-               b: "responder"
-            }
-         ])
-      });
-
-      //TODO: load data from source file
-
-      return deck;
-   }
 });

@@ -4,7 +4,8 @@ var BaseController = require('./BaseController'),
     DeckList = require('../view/DeckList'),
     DeckBlurb = require('../model/DeckBlurb'),
     DeckCollection = require('../model/DeckCollection'),
-    DirectoryLookup = require('../lib/DirectoryLookup');
+    DirectoryLookup = require('../lib/DirectoryLookup'),
+    DeckLookup = require('../lib/DeckLookup');
 
 module.exports = BaseController.extend({
 
@@ -25,6 +26,11 @@ module.exports = BaseController.extend({
    },
 
    _presentDeck: function(blurb) {
-      this.trigger('present:controller', new PresentationController(blurb));
+      var self = this;
+
+      DeckLookup.fetch(blurb)
+         .then(function(deck) {
+            self.trigger('present:controller', new PresentationController(deck));
+         });
    }
 });

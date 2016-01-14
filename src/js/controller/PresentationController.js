@@ -11,9 +11,9 @@ module.exports = BaseController.extend({
    cursor: null,
    history: new HistoryCollection(),
 
-   initialize: function(blurb) {
+   initialize: function(deck) {
       this.cursor = new DeckCursor({
-         deck: Deck.createFromBlurb(blurb)
+         deck: deck
       });
 
       BaseController.prototype.initialize.call(this);
