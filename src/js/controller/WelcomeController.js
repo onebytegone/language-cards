@@ -3,7 +3,8 @@ var BaseController = require('./BaseController'),
     WelcomeView = require('../view/WelcomeView'),
     DeckList = require('../view/DeckList'),
     DeckBlurb = require('../model/DeckBlurb'),
-    DeckCollection = require('../model/DeckCollection');
+    DeckCollection = require('../model/DeckCollection'),
+    DirectoryLookup = require('../lib/DirectoryLookup');
 
 module.exports = BaseController.extend({
 
@@ -12,31 +13,15 @@ module.exports = BaseController.extend({
           view = new WelcomeView();
 
       view.on('show', function() {
-         var deckList = new DeckList({
-            collection: self._listOfDeckBlurbs()
-         });
-
-         deckList.on('selected:deck', self._presentDeck.bind(self));
-         view.getRegion('decks').show(deckList);
+         DirectoryLookup.fetch()
+            .then(function(deckBlurbs) {
+               var deckList = new DeckList({ collection: deckBlurbs });
+               deckList.on('selected:deck', self._presentDeck.bind(self));
+               view.getRegion('decks').show(deckList);
+            });
       });
 
       return view;
-   },
-
-   _listOfDeckBlurbs: function() {
-      //TODO: pull proper data
-      return new DeckCollection([
-         new DeckBlurb({
-            name: 'Test deck',
-            percentCompleted: 0.3,
-            cardCount: 99
-         }),
-         new DeckBlurb({
-            name: 'Another deck',
-            percentCompleted: 1.0,
-            cardCount: 5
-         })
-      ]);
    },
 
    _presentDeck: function(blurb) {
