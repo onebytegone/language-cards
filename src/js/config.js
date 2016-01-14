@@ -1,0 +1,3 @@
+module.exports = {
+   DataBasePath: 'data'
+};
