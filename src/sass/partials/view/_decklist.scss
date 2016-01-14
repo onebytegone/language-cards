@@ -33,8 +33,13 @@
    }
    .developmentFlag {
       display: inline-block;
-      margin-left: 1em;
-      color: $color-detail-text;
+      margin-left: 0.5em;
+      color: $color-flag-text;
+      background-color: $color-flag-background;
+      border-radius: 4px;
+      padding: 0px 0.3em;
+      font-weight: bold;
+      font-size: 80%;
    }
    .cardCount {
       color: $color-additional-text;
