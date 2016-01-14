@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // MarionetteJS (Backbone.Marionette)
 // ----------------------------------
 // v2.4.4
@@ -16883,9 +16883,9 @@ module.exports = BaseController.extend({
    cursor: null,
    history: new HistoryCollection(),
 
-   initialize: function(blurb) {
+   initialize: function(deck) {
       this.cursor = new DeckCursor({
-         deck: Deck.createFromBlurb(blurb)
+         deck: deck
       });
 
       BaseController.prototype.initialize.call(this);
@@ -16954,7 +16954,7 @@ module.exports = BaseController.extend({
    }
 });
 
-},{"../model/CardHistory":15,"../model/Deck":16,"../model/DeckCursor":19,"../model/HistoryCollection":20,"../view/AnswerSide":21,"../view/DeckCard":22,"../view/WordSide":27,"./BaseController":9}],11:[function(require,module,exports){
+},{"../model/CardHistory":17,"../model/Deck":18,"../model/DeckCursor":21,"../model/HistoryCollection":22,"../view/AnswerSide":23,"../view/DeckCard":24,"../view/WordSide":29,"./BaseController":9}],11:[function(require,module,exports){
 var BaseController = require('./BaseController'),
     ResultsView = require('../view/ResultsView');
 
@@ -16983,13 +16983,15 @@ module.exports = BaseController.extend({
 
 });
 
-},{"../view/ResultsView":25,"./BaseController":9}],12:[function(require,module,exports){
+},{"../view/ResultsView":27,"./BaseController":9}],12:[function(require,module,exports){
 var BaseController = require('./BaseController'),
     PresentationController = require('./PresentationController'),
     WelcomeView = require('../view/WelcomeView'),
     DeckList = require('../view/DeckList'),
     DeckBlurb = require('../model/DeckBlurb'),
-    DeckCollection = require('../model/DeckCollection');
+    DeckCollection = require('../model/DeckCollection'),
+    DirectoryLookup = require('../lib/DirectoryLookup'),
+    DeckLookup = require('../lib/DeckLookup');
 
 module.exports = BaseController.extend({
 
@@ -16998,39 +17000,61 @@ module.exports = BaseController.extend({
           view = new WelcomeView();
 
       view.on('show', function() {
-         var deckList = new DeckList({
-            collection: self._listOfDeckBlurbs()
-         });
-
-         deckList.on('selected:deck', self._presentDeck.bind(self));
-         view.getRegion('decks').show(deckList);
+         DirectoryLookup.fetch()
+            .then(function(deckBlurbs) {
+               console.log(deckBlurbs);
+               var deckList = new DeckList({ collection: deckBlurbs });
+               deckList.on('selected:deck', self._presentDeck.bind(self));
+               view.getRegion('decks').show(deckList);
+            });
       });
 
       return view;
    },
 
-   _listOfDeckBlurbs: function() {
-      //TODO: pull proper data
-      return new DeckCollection([
-         new DeckBlurb({
-            name: 'Test deck',
-            percentCompleted: 0.3,
-            cardCount: 99
-         }),
-         new DeckBlurb({
-            name: 'Another deck',
-            percentCompleted: 1.0,
-            cardCount: 5
-         })
-      ]);
-   },
-
    _presentDeck: function(blurb) {
-      this.trigger('present:controller', new PresentationController(blurb));
+      var self = this;
+
+      DeckLookup.fetch(blurb)
+         .then(function(deck) {
+            self.trigger('present:controller', new PresentationController(deck));
+         });
    }
 });
 
-},{"../model/DeckBlurb":17,"../model/DeckCollection":18,"../view/DeckList":23,"../view/WelcomeView":26,"./BaseController":9,"./PresentationController":10}],13:[function(require,module,exports){
+},{"../lib/DeckLookup":13,"../lib/DirectoryLookup":14,"../model/DeckBlurb":19,"../model/DeckCollection":20,"../view/DeckList":25,"../view/WelcomeView":28,"./BaseController":9,"./PresentationController":10}],13:[function(require,module,exports){
+var $ = require('jquery'),
+    config = require('config'),
+    Deck = require('../model/Deck'),
+    CardCollection = require('../model/CardCollection');
+
+module.exports = {
+   fetch: function(blurb) {
+      return $.get(config.DataBasePath + '/' + blurb.get('file'))
+         .then(function(rawData) {
+            return new Deck({
+               blurb: blurb,
+               cards: new CardCollection(rawData.cards)
+            });
+         });
+   }
+};
+
+},{"../model/CardCollection":16,"../model/Deck":18,"config":"config","jquery":5}],14:[function(require,module,exports){
+var $ = require('jquery'),
+    config = require('config'),
+    DeckCollection = require('../model/DeckCollection');
+
+module.exports = {
+   fetch: function() {
+      return $.get(config.DataBasePath + '/directory.json')
+         .then(function(rawData) {
+            return new DeckCollection(rawData);
+         });
+   }
+};
+
+},{"../model/DeckCollection":20,"config":"config","jquery":5}],15:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -17040,7 +17064,7 @@ module.exports = Backbone.Model.extend({
    }
 });
 
-},{"backbone":4}],14:[function(require,module,exports){
+},{"backbone":4}],16:[function(require,module,exports){
 var Backbone = require('backbone'),
     Card = require('./Card');
 
@@ -17048,7 +17072,7 @@ module.exports = Backbone.Collection.extend({
    model: Card
 });
 
-},{"./Card":13,"backbone":4}],15:[function(require,module,exports){
+},{"./Card":15,"backbone":4}],17:[function(require,module,exports){
 var Backbone = require('backbone'),
     Card = require('./Card');
 
@@ -17059,7 +17083,7 @@ module.exports = Backbone.Model.extend({
    }
 });
 
-},{"./Card":13,"backbone":4}],16:[function(require,module,exports){
+},{"./Card":15,"backbone":4}],18:[function(require,module,exports){
 var Backbone = require('backbone'),
     DeckBlurb = require('./DeckBlurb'),
     CardCollection = require('./CardCollection');
@@ -17069,29 +17093,9 @@ module.exports = Backbone.Model.extend({
       blurb: new DeckBlurb(),
       cards: new CardCollection()
    }
-}, {
-   createFromBlurb: function(blurb) {
-      var deck = new this({
-         blurb: blurb,
-         cards: new CardCollection([
-            {
-               a: "word",
-               b: "answer"
-            },
-            {
-               a: "palabra",
-               b: "responder"
-            }
-         ])
-      });
-
-      //TODO: load data from source file
-
-      return deck;
-   }
 });
 
-},{"./CardCollection":14,"./DeckBlurb":17,"backbone":4}],17:[function(require,module,exports){
+},{"./CardCollection":16,"./DeckBlurb":19,"backbone":4}],19:[function(require,module,exports){
 var Backbone = require('backbone'),
     _ = require('underscore');
 
@@ -17099,18 +17103,12 @@ module.exports = Backbone.Model.extend({
    defaults: {
       name: 'Unknown Deck',
       cardCount: 0,
-      percentCompleted: 0
-   },
-
-   toJSON: function() {
-      var original = Backbone.Model.prototype.toJSON.call(this);
-      return _.extend(original, {
-         percentCompletedFormated: Math.round(original.percentCompleted * 100)
-      });
+      underDevelopment: false,
+      file: ''
    }
 });
 
-},{"backbone":4,"underscore":6}],18:[function(require,module,exports){
+},{"backbone":4,"underscore":6}],20:[function(require,module,exports){
 var Backbone = require('backbone'),
     DeckBlurb = require('./DeckBlurb');
 
@@ -17118,7 +17116,7 @@ module.exports = Backbone.Collection.extend({
    model: DeckBlurb
 });
 
-},{"./DeckBlurb":17,"backbone":4}],19:[function(require,module,exports){
+},{"./DeckBlurb":19,"backbone":4}],21:[function(require,module,exports){
 var Backbone = require('backbone'),
     _ = require('underscore'),
     Deck = require('./Deck');
@@ -17154,7 +17152,7 @@ module.exports = Backbone.Model.extend({
    }
 });
 
-},{"./Deck":16,"backbone":4,"underscore":6}],20:[function(require,module,exports){
+},{"./Deck":18,"backbone":4,"underscore":6}],22:[function(require,module,exports){
 var Backbone = require('backbone'),
     CardHistory = require('./CardHistory');
 
@@ -17167,7 +17165,7 @@ module.exports = Backbone.Collection.extend({
    }
 });
 
-},{"./CardHistory":15,"backbone":4}],21:[function(require,module,exports){
+},{"./CardHistory":17,"backbone":4}],23:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -17186,7 +17184,7 @@ module.exports = Marionette.ItemView.extend({
    }
 });
 
-},{"backbone.marionette":1}],22:[function(require,module,exports){
+},{"backbone.marionette":1}],24:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.LayoutView.extend({
@@ -17206,7 +17204,7 @@ module.exports = Marionette.LayoutView.extend({
    }
 });
 
-},{"backbone.marionette":1}],23:[function(require,module,exports){
+},{"backbone.marionette":1}],25:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     DeckListItem = require('./DeckListItem');
 
@@ -17223,7 +17221,7 @@ module.exports = Marionette.CollectionView.extend({
    }
 });
 
-},{"./DeckListItem":24,"backbone.marionette":1}],24:[function(require,module,exports){
+},{"./DeckListItem":26,"backbone.marionette":1}],26:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -17237,7 +17235,7 @@ module.exports = Marionette.ItemView.extend({
    }
 });
 
-},{"backbone.marionette":1}],25:[function(require,module,exports){
+},{"backbone.marionette":1}],27:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.LayoutView.extend({
@@ -17251,7 +17249,7 @@ module.exports = Marionette.LayoutView.extend({
    }
 });
 
-},{"backbone.marionette":1}],26:[function(require,module,exports){
+},{"backbone.marionette":1}],28:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.LayoutView.extend({
@@ -17263,7 +17261,7 @@ module.exports = Marionette.LayoutView.extend({
    }
 });
 
-},{"backbone.marionette":1}],27:[function(require,module,exports){
+},{"backbone.marionette":1}],29:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({
@@ -17277,5 +17275,10 @@ module.exports = Marionette.ItemView.extend({
    }
 });
 
-},{"backbone.marionette":1}]},{},[7])
+},{"backbone.marionette":1}],"config":[function(require,module,exports){
+module.exports = {
+   DataBasePath: 'data'
+};
+
+},{}]},{},[7])
 //# sourceMappingURL=bundle.map

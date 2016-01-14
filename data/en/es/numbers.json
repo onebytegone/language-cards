@@ -2,7 +2,7 @@
    "name": "Numbers",
    "author": "Ethan Smith",
    "version": "0.0.0",
-   "percentDone": 0.2,
+   "underDevelopment": true,
    "cards": [
       {
          "a": "0",

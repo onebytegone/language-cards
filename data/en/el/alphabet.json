@@ -2,7 +2,7 @@
    "name": "Greek alphabet",
    "author": "Ethan Smith",
    "version": "0.0.0",
-   "percentDone": 0.9,
+   "underDevelopment": true,
    "cards": [
       { "a": "Α", "b": "alpha/άλφα" },
       { "a": "Β", "b": "beta/βήτα" },
