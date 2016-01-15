@@ -12,6 +12,8 @@ module.exports = BaseController.extend({
    history: new HistoryCollection(),
 
    initialize: function(deck) {
+      deck.shuffle();
+
       this.cursor = new DeckCursor({
          deck: deck
       });
