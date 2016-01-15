@@ -16801,6 +16801,9 @@ var $ = require('jquery'),
 
 $(function () {
    'use strict';
+
+   document.addEventListener("touchstart", function(){}, true);
+
    var app = new LanguageCards();
    app.run();
 });
@@ -16884,6 +16887,8 @@ module.exports = BaseController.extend({
    history: new HistoryCollection(),
 
    initialize: function(deck) {
+      deck.shuffle();
+
       this.cursor = new DeckCursor({
          deck: deck
       });
@@ -16968,7 +16973,6 @@ module.exports = BaseController.extend({
    },
 
    generateView: function() {
-    console.log(this.history);
       var self = this,
           view = new ResultsView({
              model: this.history
@@ -17002,7 +17006,6 @@ module.exports = BaseController.extend({
       view.on('show', function() {
          DirectoryLookup.fetch()
             .then(function(deckBlurbs) {
-               console.log(deckBlurbs);
                var deckList = new DeckList({ collection: deckBlurbs });
                deckList.on('selected:deck', self._presentDeck.bind(self));
                view.getRegion('decks').show(deckList);
@@ -17092,6 +17095,10 @@ module.exports = Backbone.Model.extend({
    defaults: {
       blurb: new DeckBlurb(),
       cards: new CardCollection()
+   },
+
+   shuffle: function () {
+      this.get('cards').reset(this.get('cards').shuffle(), {silent:true});
    }
 });
 
