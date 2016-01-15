@@ -28,8 +28,14 @@
    }
    .wrong {
       color: $color-wrong-text;
+      &:hover, &:active {
+         color: $color-wrong-text--hover;
+      }
    }
    .correct {
       color: $color-correct-text;
+      &:hover, &:active {
+         color: $color-correct-text--hover;
+      }
    }
 }

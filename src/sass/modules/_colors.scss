@@ -17,4 +17,6 @@ $color-flag-text: #888888;
 $color-flag-background: #bbbbbb;
 
 $color-wrong-text: #BB0008;
+$color-wrong-text--hover: darken($color-wrong-text, 10%);
 $color-correct-text: #408000;
+$color-correct-text--hover: darken($color-correct-text, 10%);

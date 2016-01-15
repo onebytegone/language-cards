@@ -3,6 +3,9 @@ var $ = require('jquery'),
 
 $(function () {
    'use strict';
+
+   document.addEventListener("touchstart", function(){}, true);
+
    var app = new LanguageCards();
    app.run();
 });
