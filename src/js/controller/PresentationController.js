@@ -9,7 +9,7 @@ var BaseController = require('./BaseController'),
 
 module.exports = BaseController.extend({
    cursor: null,
-   history: new HistoryCollection(),
+   history: null,
 
    initialize: function(deck) {
       deck.shuffle();
@@ -17,6 +17,8 @@ module.exports = BaseController.extend({
       this.cursor = new DeckCursor({
          deck: deck
       });
+
+      this.history = new HistoryCollection();
 
       BaseController.prototype.initialize.call(this);
    },
