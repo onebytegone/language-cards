@@ -4,7 +4,7 @@
    <title></title>
    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0">
    <meta name="apple-mobile-web-app-capable" content="yes">
-   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=greek,latin' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,greek' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
@@ -26,13 +26,11 @@
    <script type="text/template" id="template-deckcard">
       <div class="headerbar">
          <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
-      </div>
-      <div class="contents"></div>
-      <div class="footerbar">
          <div class="progress">
             <span class="current"><%- readableIndex %></span>&nbsp;of&nbsp;<span class="total"><%- cardCount %></span>
          </div>
       </div>
+      <div class="contents"></div>
    </script>
    <script type="text/template" id="template-wordside">
       <a href="#" class="flip">
