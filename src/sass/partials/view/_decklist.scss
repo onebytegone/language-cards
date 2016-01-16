@@ -29,7 +29,8 @@
       }
    }
    .name {
-      font-weight: bold;
+      font-weight: 600;
+      color: $color-bold-text;
    }
    .developmentFlag {
       display: inline-block;
