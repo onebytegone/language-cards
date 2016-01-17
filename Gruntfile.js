@@ -103,6 +103,7 @@ module.exports = function(grunt) {
             '<%= project.src.root %>/**/*.js',
             '<%= project.src.root %>/**/*.scss',
             '<%= project.src.root %>/**/*.html',
+            '<%= project.src.data %>/**/*.json',
          ],
          tasks: ['default']
       },
