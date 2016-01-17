@@ -9,15 +9,19 @@
    }
 }
 
-.wordlist {
-   min-width: 50%;
+.needingWork {
    height: 45%;
+}
+
+.wordlist {
+   height: 100%;
    text-align: left;
    overflow-y: scroll;
    margin: 0;
    padding: 0;
    border: 2px solid $color-border;
    border-radius: 4px;
+   color: $color-detail-text;
    li {
       list-style-type: none;
       margin: 0;
@@ -26,5 +30,11 @@
       &:last-of-type{
          border-bottom: 0;
       }
+   }
+   .sideA {
+      color: $color-text;
+   }
+   .sideB {
+      color: $color-lighter-text;
    }
 }

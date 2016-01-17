@@ -23,6 +23,9 @@
          <% } %><span class="cardCount"><%= cardCount %> cards</span>
       </a>
    </script>
+   <script type="text/template" id="template-wordlistitem">
+      <span class="sideA"><%= a %></span>&nbsp;-&nbsp;<span class="sideB"><%= b %></span>
+   </script>
    <script type="text/template" id="template-deckcard">
       <div class="headerbar">
          <a href="#" class="homebutton"><i class="fa fa-home"></i></a>
@@ -54,15 +57,7 @@
          <h1>Finished!</h1>
          <p><%= numberCorrect %> cards correct</p>
          <h2>Cards needing work:</h2>
-         <ul class="wordlist">
-            <li>Word 1</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-         </ul>
+         <div class="needingWork"></div>
       </div>
    </script>
    <script type="text/javascript" src="js/bundle.js"></script>

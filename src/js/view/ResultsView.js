@@ -8,5 +8,8 @@ module.exports = Marionette.LayoutView.extend({
       'click a.homebutton' : function(event) {
          this.trigger('home:pressed');
       }
+   },
+   regions: {
+      wordList: '.needingWork'
    }
 });
