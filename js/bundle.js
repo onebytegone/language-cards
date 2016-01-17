@@ -16961,9 +16961,11 @@ module.exports = BaseController.extend({
    }
 });
 
-},{"../model/CardHistory":17,"../model/Deck":18,"../model/DeckCursor":21,"../model/HistoryCollection":22,"../view/AnswerSide":23,"../view/DeckCard":24,"../view/WordSide":29,"./BaseController":9}],11:[function(require,module,exports){
-var BaseController = require('./BaseController'),
-    ResultsView = require('../view/ResultsView');
+},{"../model/CardHistory":17,"../model/Deck":18,"../model/DeckCursor":21,"../model/HistoryCollection":22,"../view/AnswerSide":23,"../view/DeckCard":24,"../view/WordSide":31,"./BaseController":9}],11:[function(require,module,exports){
+var Backbone = require('backbone'),
+    BaseController = require('./BaseController'),
+    ResultsView = require('../view/ResultsView'),
+    WordList = require('../view/WordList');
 
 module.exports = BaseController.extend({
    history: undefined,
@@ -16980,6 +16982,16 @@ module.exports = BaseController.extend({
              model: this.history
           });
 
+      view.on('show', function() {
+         var cardCollection = self.history.reduce(function (memo, cardHistory) {
+            memo.add(cardHistory.get('card'));
+            return memo;
+         }, new Backbone.Collection());
+
+         var wordList = new WordList({ collection: cardCollection });
+         view.getRegion('wordList').show(wordList);
+      });
+
       view.on('home:pressed', function() {
          self.trigger('go:welcomescreen');
       });
@@ -16989,7 +17001,7 @@ module.exports = BaseController.extend({
 
 });
 
-},{"../view/ResultsView":27,"./BaseController":9}],12:[function(require,module,exports){
+},{"../view/ResultsView":27,"../view/WordList":29,"./BaseController":9,"backbone":4}],12:[function(require,module,exports){
 var BaseController = require('./BaseController'),
     PresentationController = require('./PresentationController'),
     WelcomeView = require('../view/WelcomeView'),
@@ -17113,7 +17125,9 @@ module.exports = Backbone.Model.extend({
       name: 'Unknown Deck',
       cardCount: 0,
       underDevelopment: false,
-      file: ''
+      file: '',
+      sourceLocale: '',
+      targetLocale: ''
    }
 });
 
@@ -17168,8 +17182,10 @@ var Backbone = require('backbone'),
 module.exports = Backbone.Collection.extend({
    model: CardHistory,
    toJSON: function() {
+      var correct = this.filter('wasCorrect').length;
       return {
-         numberCorrect: this.filter('wasCorrect').length
+         numberCorrect: correct,
+         percentageCorrect: Math.round(correct / this.length * 100)
       };
    }
 });
@@ -17255,6 +17271,9 @@ module.exports = Marionette.LayoutView.extend({
       'click a.homebutton' : function(event) {
          this.trigger('home:pressed');
       }
+   },
+   regions: {
+      wordList: '.needingWork'
    }
 });
 
@@ -17271,6 +17290,25 @@ module.exports = Marionette.LayoutView.extend({
 });
 
 },{"backbone.marionette":1}],29:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+    WordListItem = require('./WordListItem');
+
+module.exports = Marionette.CollectionView.extend({
+   tagName: 'ul',
+   className: 'wordlist',
+   childView: WordListItem
+});
+
+},{"./WordListItem":30,"backbone.marionette":1}],30:[function(require,module,exports){
+var Marionette = require('backbone.marionette');
+
+module.exports = Marionette.ItemView.extend({
+   template: '#template-wordlistitem',
+   tagName: 'li',
+   className: 'wordlistitem'
+});
+
+},{"backbone.marionette":1}],31:[function(require,module,exports){
 var Marionette = require('backbone.marionette');
 
 module.exports = Marionette.ItemView.extend({

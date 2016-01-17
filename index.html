@@ -18,10 +18,18 @@
    </script>
    <script type="text/template" id="template-decklistitem">
       <a href="#">
-         <span class="name"><%= name %></span><% if (underDevelopment) { %>
-            <span class="developmentFlag">dev</span>
-         <% } %><span class="cardCount"><%= cardCount %> cards</span>
+         <span class="name"><%- name %></span>
+         <% if (targetLocale) { %>
+            <span class="deckFlag targetLocale"><%- targetLocale %></span>
+         <% } %>
+         <% if (underDevelopment) { %>
+            <span class="deckFlag development">dev</span>
+         <% } %>
+         <span class="cardCount"><%- cardCount %> cards</span>
       </a>
+   </script>
+   <script type="text/template" id="template-wordlistitem">
+      <span class="sideA"><%= a %></span>&nbsp;-&nbsp;<span class="sideB"><%= b %></span>
    </script>
    <script type="text/template" id="template-deckcard">
       <div class="headerbar">
@@ -34,12 +42,12 @@
    </script>
    <script type="text/template" id="template-wordside">
       <a href="#" class="flip">
-         <span class="word"><%- a %></span>
+         <span class="word"><%= a %></span>
       </a>
    </script>
    <script type="text/template" id="template-answerside">
       <div class="answer">
-         <div><%- b %></div>
+         <div><%= b %></div>
       </div>
       <div class="outcome">
          <a href="#" class="outcome-button wrong"><i class="fa fa-times-circle-o"></i></a>
@@ -52,17 +60,9 @@
       </div>
       <div class="contents">
          <h1>Finished!</h1>
-         <p><%= numberCorrect %> cards correct</p>
+         <p><%- numberCorrect %> cards correct <span class="percentCorrect">(<%- percentageCorrect %>%)</span></p>
          <h2>Cards needing work:</h2>
-         <ul class="wordlist">
-            <li>Word 1</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-            <li>Word 2</li>
-            <li>Word 3</li>
-         </ul>
+         <div class="needingWork"></div>
       </div>
    </script>
    <script type="text/javascript" src="js/bundle.js"></script>
