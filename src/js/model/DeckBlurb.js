@@ -6,6 +6,8 @@ module.exports = Backbone.Model.extend({
       name: 'Unknown Deck',
       cardCount: 0,
       underDevelopment: false,
-      file: ''
+      file: '',
+      sourceLocale: '',
+      targetLocale: ''
    }
 });

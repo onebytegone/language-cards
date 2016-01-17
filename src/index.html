@@ -18,9 +18,14 @@
    </script>
    <script type="text/template" id="template-decklistitem">
       <a href="#">
-         <span class="name"><%= name %></span><% if (underDevelopment) { %>
-            <span class="developmentFlag">dev</span>
-         <% } %><span class="cardCount"><%= cardCount %> cards</span>
+         <span class="name"><%= name %></span>
+         <% if (targetLocale) { %>
+            <span class="deckFlag targetLocale"><%= targetLocale %></span>
+         <% } %>
+         <% if (underDevelopment) { %>
+            <span class="deckFlag development">dev</span>
+         <% } %>
+         <span class="cardCount"><%= cardCount %> cards</span>
       </a>
    </script>
    <script type="text/template" id="template-wordlistitem">
