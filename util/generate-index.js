@@ -9,7 +9,9 @@ var _ = require('underscore'),
     sanitizePath;
 
 generateEntry = function(filepath) {
-   var contents, entry;
+   var contents, entry,
+       sourceLocale = filepath.match(/\w*\/(\w*)\/.*/),
+       targetLocale = filepath.match(/\w*\/\w*\/(\w*)\/.*/);
 
    console.log('Creating index entry for: ' + filepath);
 
@@ -18,7 +20,9 @@ generateEntry = function(filepath) {
    entry = {
       file: sanitizePath(filepath),
       name: contents.name,
-      cardCount: contents.cards.length
+      cardCount: contents.cards.length,
+      sourceLocale: sourceLocale ? sourceLocale[1] : '',
+      targetLocale: targetLocale ? targetLocale[1] : ''
    };
 
    if (contents.underDevelopment) {
