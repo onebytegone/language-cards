@@ -10,6 +10,9 @@ module.exports = function(grunt) {
 
    grunt.initConfig({
       project: {
+         lib: {
+            node: 'node_modules'
+         },
          src: {
             root: './src',
             js: '<%= project.src.root %>/js',
@@ -20,7 +23,8 @@ module.exports = function(grunt) {
             root: 'dist',
             css: '<%= project.dist.root %>/css',
             js: '<%= project.dist.root %>/js',
-            data: '<%= project.dist.root %>/data'
+            data: '<%= project.dist.root %>/data',
+            fonts: '<%= project.dist.root %>/fonts'
          }
       },
       sass: {
@@ -91,6 +95,16 @@ module.exports = function(grunt) {
                   filter: 'isFile'
                },
             ]
+         },
+         fonts: {
+            files: [
+               {
+                  expand: true,
+                  cwd: '<%= project.lib.node %>/font-awesome/fonts',
+                  src: '*',
+                  dest: '<%= project.dist.fonts %>'
+               }
+            ]
          }
       },
       execute: {
@@ -119,6 +133,6 @@ module.exports = function(grunt) {
       }
    });
 
-   grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'execute:buildIndex']);
+   grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'copy:fonts', 'execute:buildIndex']);
    grunt.registerTask('deploy', ['default', 'gh-pages']);
 };
