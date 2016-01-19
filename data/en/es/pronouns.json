@@ -1,0 +1,36 @@
+{
+   "name": "Pronouns",
+   "author": "Ethan Smith",
+   "version": "0.0.0",
+   "underDevelopment": true,
+   "cards": [
+      {
+         "a": "<i class='user origin'></i>",
+         "b": "Yo"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='person secondPerson'></i>",
+         "b": "Tú"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson male'></i>",
+         "b": "Él"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson female'></i>",
+         "b": "Ella"
+      },
+      {
+         "a": "<i class='group origin'></i>",
+         "b": "Nosotros"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson male'></i><i class='thirdPerson female'></i>",
+         "b": "Ellos"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson female'></i><i class='thirdPerson female'></i>",
+         "b": "Ellas"
+      }
+   ]
+}
