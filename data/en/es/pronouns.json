@@ -5,8 +5,32 @@
    "underDevelopment": true,
    "cards": [
       {
-         "a": "<i class='fa fa-user'></i><i class='fa fa-users'></i><i class='fa fa-male'></i><i class='fa fa-female'></i>",
-         "b": "cero"
+         "a": "<i class='user origin'></i>",
+         "b": "Yo"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='person secondPerson'></i>",
+         "b": "Tú"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson male'></i>",
+         "b": "Él"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson female'></i>",
+         "b": "Ella"
+      },
+      {
+         "a": "<i class='group origin'></i>",
+         "b": "Nosotros"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson male'></i><i class='thirdPerson female'></i>",
+         "b": "Ellos"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='thirdPerson female'></i><i class='thirdPerson female'></i>",
+         "b": "Ellas"
       }
    ]
 }

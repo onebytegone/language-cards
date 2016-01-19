@@ -1,0 +1,80 @@
+{
+   "name": "Verb Conjugation",
+   "author": "Ethan Smith",
+   "version": "0.0.1",
+   "underDevelopment": true,
+   "cards": [
+      {
+         "a": "<i class='fa fa-comment'></i>",
+         "b": "Hablar"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='fa fa-comment'></i>",
+         "b": "Yo hablo"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='secondPerson person'></i><i class='fa fa-comment'></i>",
+         "b": "Tú hablas"
+      },
+      {
+         "a": "<i class='group origin'></i><i class='fa fa-comment'></i>",
+         "b": "Nosotros hablamos"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-comment'></i>",
+         "b": "Él habla"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-female'></i><i class='fa fa-comment'></i>",
+         "b": "Ellos hablan"
+      },
+      {
+         "a": "<i class='fa fa-cutlery'></i>",
+         "b": "Comer"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='fa fa-cutlery'></i>",
+         "b": "Yo como"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='secondPerson person'></i><i class='fa fa-cutlery'></i>",
+         "b": "Tú comes"
+      },
+      {
+         "a": "<i class='group origin'></i><i class='fa fa-cutlery'></i>",
+         "b": "Nosotros comemos"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-cutlery'></i>",
+         "b": "Él come"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-female'></i><i class='fa fa-cutlery'></i>",
+         "b": "Ellos comen"
+      },
+      {
+         "a": "<i class='fa fa-pencil'></i>",
+         "b": "Escribir"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='fa fa-pencil'></i>",
+         "b": "Yo escribo"
+      },
+      {
+         "a": "<i class='user origin'></i><i class='refersTo'></i><i class='secondPerson person'></i><i class='fa fa-pencil'></i>",
+         "b": "Tú escribes"
+      },
+      {
+         "a": "<i class='group origin'></i><i class='fa fa-pencil'></i>",
+         "b": "Nosotros escribimos"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-pencil'></i>",
+         "b": "Él escribe"
+      },
+      {
+         "a": "<span class='scope'><i class='user origin'></i><i class='fa fa-user'></i></span><i class='refersTo'></i><i class='fa fa-male'></i><i class='fa fa-female'></i><i class='fa fa-pencil'></i>",
+         "b": "Ellos escriben"
+      }
+   ]
+}

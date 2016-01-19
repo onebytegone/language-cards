@@ -16984,7 +16984,9 @@ module.exports = BaseController.extend({
 
       view.on('show', function() {
          var cardCollection = self.history.reduce(function (memo, cardHistory) {
-            memo.add(cardHistory.get('card'));
+            if (!cardHistory.get('wasCorrect')) {
+               memo.add(cardHistory.get('card'));
+            }
             return memo;
          }, new Backbone.Collection());
 
