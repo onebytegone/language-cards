@@ -22,3 +22,8 @@ $color-wrong-text: #BB0008;
 $color-wrong-text--hover: darken($color-wrong-text, 10%);
 $color-correct-text: #408000;
 $color-correct-text--hover: darken($color-correct-text, 10%);
+
+$color-symbol-user: #372A52;
+$color-symbol-context: #999999;
+$color-symbol-second-person: #34663B;
+$color-symbol-third-person: $color-text;

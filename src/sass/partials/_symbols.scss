@@ -1,0 +1,49 @@
+i.fa {
+   margin: 0 0.1em;
+}
+
+.user {
+   @extend .fa;
+   @extend .fa-user;
+   color: $color-symbol-user;
+}
+
+.origin {
+   padding-bottom: 0.05em;
+   border-bottom: 0.1em solid;
+}
+
+.secondPerson {
+   color: $color-symbol-second-person;
+}
+
+.thirdPerson {
+   color: $color-symbol-third-person;
+}
+
+.person {
+   @extend .fa;
+   @extend .fa-user;
+}
+
+.group {
+   @extend .fa;
+   @extend .fa-users;
+}
+
+.male {
+   @extend .fa;
+   @extend .fa-male;
+}
+
+.female {
+   @extend .fa;
+   @extend .fa-female;
+}
+
+.refersTo {
+   @extend .fa;
+   @extend .fa-long-arrow-right;
+   color: $color-symbol-context;
+   font-size: 70%;
+}
