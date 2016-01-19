@@ -41,6 +41,17 @@ i.fa {
    @extend .fa-female;
 }
 
+.scope {
+   &:before {
+      color: $color-symbol-scope;
+      content: "(";
+   }
+   &:after {
+      color: $color-symbol-scope;
+      content: ")";
+   }
+}
+
 .refersTo {
    @extend .fa;
    @extend .fa-long-arrow-right;
