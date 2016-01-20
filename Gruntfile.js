@@ -3,6 +3,7 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-exorcise');
    grunt.loadNpmTasks('grunt-contrib-copy');
+   grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-execute');  // Run node files
    grunt.loadNpmTasks('grunt-exec');  // Run cli commands (e.g. `git status`)
@@ -134,6 +135,9 @@ module.exports = function(grunt) {
             cmd: 'git stash pop && git reset'
          }
       },
+      clean: {
+         dist: [ '<%= project.dist.root %>' ]
+      },
       'gh-pages': {
          options: {
             base: 'dist',
@@ -144,5 +148,5 @@ module.exports = function(grunt) {
    });
 
    grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'copy:fonts', 'execute:buildIndex']);
-   grunt.registerTask('deploy', ['exec:stash', 'default', 'gh-pages', 'exec:stashpop']);
+   grunt.registerTask('deploy', ['exec:stash', 'clean:dist', 'default', 'gh-pages', 'exec:stashpop']);
 };
