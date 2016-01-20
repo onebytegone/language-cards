@@ -4,7 +4,8 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-exorcise');
    grunt.loadNpmTasks('grunt-contrib-copy');
    grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-execute');
+   grunt.loadNpmTasks('grunt-execute');  // Run node files
+   grunt.loadNpmTasks('grunt-exec');  // Run cli commands (e.g. `git status`)
    grunt.loadNpmTasks('grunt-sass');
    grunt.loadNpmTasks('grunt-gh-pages');
 
@@ -124,6 +125,15 @@ module.exports = function(grunt) {
       jshint: {
          files: ['Gruntfile.js', '<%= project.src.root %>/app.js', '<%= project.src.js %>/**/*.js']
       },
+      exec: {
+         // Note: These will stash all uncommited files and will NOT keep staged changes.
+         stash: {
+            cmd: 'git add . && git stash'
+         },
+         stashpop: {
+            cmd: 'git stash pop && git reset'
+         }
+      },
       'gh-pages': {
          options: {
             base: 'dist',
@@ -134,5 +144,5 @@ module.exports = function(grunt) {
    });
 
    grunt.registerTask('default', ['jshint', 'sass:dist', 'browserify', 'exorcise', 'copy:app', 'copy:data', 'copy:fonts', 'execute:buildIndex']);
-   grunt.registerTask('deploy', ['default', 'gh-pages']);
+   grunt.registerTask('deploy', ['exec:stash', 'default', 'gh-pages', 'exec:stashpop']);
 };
