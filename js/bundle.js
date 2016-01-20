@@ -17295,10 +17295,16 @@ module.exports = Marionette.LayoutView.extend({
 var Marionette = require('backbone.marionette'),
     WordListItem = require('./WordListItem');
 
+var NoChildrenView = Marionette.ItemView.extend({
+   tagName: 'li',
+   template: "#template-no-words-positive"
+});
+
 module.exports = Marionette.CollectionView.extend({
    tagName: 'ul',
    className: 'wordlist',
-   childView: WordListItem
+   childView: WordListItem,
+   emptyView: NoChildrenView
 });
 
 },{"./WordListItem":30,"backbone.marionette":1}],30:[function(require,module,exports){
