@@ -5,6 +5,16 @@ Just a small site to store language flash cards.
 
 ## Development
 
+### Setup
+
+```
+git clone https://github.com/onebytegone/language-cards.git
+cd language-cards
+npm install
+grunt
+```
+
+
 ### Build
 
 ```
